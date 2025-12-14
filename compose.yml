@@ -7,10 +7,7 @@ services:
             - "3300:3300"
         restart: unless-stopped
         environment:
-            - VITE_CLIENT_URL
-            - VITE_SERVER_URL
             - HF_TOKEN
-            - PYTHONPATH
             - NEWS_API_TOKEN
             - SUPABASE_URL
             - SUPABASE_KEY
