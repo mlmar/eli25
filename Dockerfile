@@ -6,4 +6,4 @@ COPY src/server/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run 
-CMD ["python", "process_daily_articles"]
+CMD ["python", "./process_daily_articles.py"]
