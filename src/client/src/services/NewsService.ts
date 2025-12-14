@@ -1,6 +1,6 @@
 import { Config } from "@/services/Config";
 import { HTTPService } from "@/services/HTTPService";
-import type { Article } from "@/types/Article";
+import type { ArticleResult } from "@/types/ArticleResult";
 
 export class NewsService {
     /**
@@ -8,8 +8,8 @@ export class NewsService {
      * @param {{ topic: string, audience: string }} data 
      * @returns {string}
      */
-    static async getArticleCards(): Promise<Article[]> {
-        const response = await HTTPService.get<null, Article[]>(Config.SERVER_URL + '/news');
+    static async getArticleCards(): Promise<ArticleResult[]> {
+        const response = await HTTPService.get<null, ArticleResult[]>(Config.SERVER_URL + '/news');
         return response;
     }
 }

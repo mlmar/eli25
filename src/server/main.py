@@ -22,4 +22,3 @@ app.include_router(news_routes.router, prefix='/api')
 @app.get('/')
 def root():
     return 'Root!'
-
