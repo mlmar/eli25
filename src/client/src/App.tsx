@@ -2,51 +2,44 @@ import './App.less';
 import { useArticles } from '@/hooks/useArticles';
 import { ArticleCard } from '@/components/ArticleCard';
 import { Carousel } from '@/components/Carousel';
+import { Info } from '@/components/Info';
+import { css } from '@/util/css';
+import { styles } from '@/styles';
+import { IconLink } from '@/components/IconLink';
 
 export default function App() {
     const { data: articles, isLoading: isArticlesLoading } = useArticles();
 
     return (
-        <main className='bg-neutral-5500 h-full h-full w-full flex flex-col flex-auto justify-center bg-neutral-200'>
-            <header className='pl-10 pr-10 pt-5 pb-5 bg-neutral-900 text-white shadow-md'>
-                <h1 className='font-bold text-2xl'> eli25 </h1>
+        <main className='bg-neutral-5500 h-full h-full w-full flex flex-col flex-auto justify-center bg-neutral-200 overflow-auto'>
+            <header
+                className={css(
+                    'flex items-center justify-between pl-10 pr-10 pt-3 pb-3 text-white shadow-md',
+                    styles.darkBg
+                )}
+            >
+                <h1 className='font-bold text-xl'> eli25 </h1>
+                <span className='flex gap-5'>
+                    <IconLink className='invert h-7 w-7' src={githubImage} url={githubUrl} />
+                    <IconLink className='h-full h-7 w-7' src={portfolioImage} url={portfolioUrl} />
+                </span>
             </header>
-            <Carousel className='p-10'>
-                {renderInfo()}
-                {isArticlesLoading && 'Loading...'}
-                {articles?.map((props) => (
-                    <ArticleCard className='max-h-fit w-full' {...props} key={props.article.url} />
-                ))}
-            </Carousel>
+            <section className='flex flex-col basis-full overflow-auto'>
+                <Info />
+                <Carousel className='p-10'>
+                    {isArticlesLoading && 'Loading...'}
+                    {articles?.map((props) => (
+                        <Carousel.Card key={props.article.url}>
+                            <ArticleCard {...props} />
+                        </Carousel.Card>
+                    ))}
+                </Carousel>
+            </section>
         </main>
     );
 }
 
-function renderInfo() {
-    return (
-        <label>
-            Articles pulled daily from
-            <a className='font-bold ml-1' href='https://newsapi.org/'>
-                News API
-            </a>
-            , summarized with
-            <a className='font-bold ml-1' href='https://huggingface.co/sshleifer/distilbart-cnn-12-6'>
-                sshleifer/distilbart-cnn-12-6
-            </a>
-        </label>
-    );
-}
-
-// const labelStyle = 'flex min-w-fit text-nowrap';
-// const submitStyles = css(
-//     'flex items-center justify-center',
-//     'border border-solid rounded-full',
-//     'p-1 w-8 h-8',
-//     'text-violet-400',
-//     'cursor-pointer',
-//     'transition',
-//     'hover:bg-violet-400',
-//     'hover:border-violet-400',
-//     'hover:text-white',
-//     'disabled:opacity-50'
-// );
+const githubImage = '/github.png';
+const githubUrl = 'https://github.com/mlmar/eli25';
+const portfolioImage = '/m.ico';
+const portfolioUrl = 'https://mlmar.github.io';
