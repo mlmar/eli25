@@ -44,7 +44,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY --from=backend-build /app/server .
 
 # Copy built front end
-COPY --from=frontend-build /app/server/static ./static
+COPY --from=frontend-build /app/client/dist ./static
 
 EXPOSE 3300
 
