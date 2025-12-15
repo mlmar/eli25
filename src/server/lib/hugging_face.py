@@ -1,16 +1,24 @@
-import os
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 
-model_id = 'sshleifer/distilbart-cnn-12-6'
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForSeq2SeqLM.from_pretrained(
-    model_id,
-    device_map='auto'
-)
+import config
 
-pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
+__pipe = None
+def get_pipeline():
+    """Initializes pipeline model"""
+    global __pipe
+    if __pipe is None and config.model:
+        model_id = config.model
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            model_id,
+            device_map='auto'
+        )
+        __pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
+
+    return __pipe
 
 def generate_text(prompt: str) -> str:
+    pipe = get_pipeline()
     summary = pipe(prompt)
     return summary[-1]['generated_text']
 
