@@ -1,14 +1,14 @@
-import os
 from pathlib import Path
 from fastapi import APIRouter
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+import config
 
 router = APIRouter()
 
 # Override routes for static files if production
-if not os.environ.get('DEV'):
-    frontend_path = Path(__file__).parent / 'static'
+if not config.DEV:
+    frontend_path = Path(__file__).parent.parent / 'static'
     router.mount('/static', StaticFiles(directory=frontend_path, html=True), name='static')
 
     # Serve index.html for all other non-API routes
