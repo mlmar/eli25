@@ -17,4 +17,4 @@ jobs:
                   NEWS_API_TOKEN: ${{secrets.NEWS_API_TOKEN}}
                   SUPABASE_URL: ${{secrets.SUPABASE_URL}}
                   SUPABASE_KEY: ${{secrets.SUPABASE_KEY}}
-              run: docker compose up -d
+              run: docker compose up
