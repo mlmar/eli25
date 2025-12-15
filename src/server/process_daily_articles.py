@@ -1,8 +1,5 @@
 import traceback
-from dotenv import load_dotenv
 from lib.news import process_daily_articles
-
-load_dotenv()
 
 print('------- PROCESSING DAILY ARTICLES -------')
 

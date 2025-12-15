@@ -1,11 +1,8 @@
-version: "3.9"
-
 services:
     app:
         build: ./
-        ports:
-            - "3300:3300"
-        restart: unless-stopped
+        env_file:
+            - .env
         environment:
             - HF_TOKEN
             - NEWS_API_TOKEN

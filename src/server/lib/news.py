@@ -1,5 +1,4 @@
 from datetime import date
-
 from pydantic import BaseModel
 
 import config
@@ -50,16 +49,18 @@ def process_articles(target_date: date) -> list[ArticleDBResult]:
         articles = get_top_articles(config.MAX_PAGES)
         data = []
         for article in articles:
-            content = read_page(article['url'])
-            if content:
-                summary = agent.eli25(content)
-                data.append({ 
-                    'date': target_date_str, 
-                    'article': article,
-                    'summary': summary
-                })
-            else:
-                print(f'Skipping article {article['url']}')
+            try:
+                content = read_page(article['url'])
+                if content:
+                    summary = agent.eli25(content)
+                    data.append({ 
+                        'date': target_date_str, 
+                        'article': article,
+                        'summary': summary
+                    })
+            except:
+                print(f'Failed to summarize {article['url']}')
                 
+        print(f'Successfully processed {len(data)} articles')
         articles_table.insert(data)
         return data
