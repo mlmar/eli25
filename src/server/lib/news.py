@@ -1,30 +1,14 @@
 from datetime import date
-from pydantic import BaseModel
 
 import config
 from lib import agent
 from lib.db.database_table import DatabaseTable
 from lib.web import read_page
-from service.news_service import Article, get_top_articles
+from service.news_service import get_top_articles
+from lib.types import ArticleDBResult
 from util.date_util import get_today_pst
 
 articles_table = DatabaseTable(config.SUPABASE_ARTICLES_TABLE)
-
-class ArticleDBResult(BaseModel): 
-    article: Article
-    summary: str
-    date: str
-
-def get_latest_articles()  -> list[ArticleDBResult]:
-    """Fetches latest article results from the db"""
-    date_response = articles_table.get_table().select('date').order('date', desc=True).limit(1).execute()
-    if date_response and len(date_response.data) > 0:
-        latest_date = date_response.data[0]['date']
-        db_response = articles_table.get_table().select('date,article,summary').eq('date', latest_date).execute()
-        print(f'Successfulyl fetched {len(db_response.data)} articles for {latest_date} from the db')
-        return db_response.data
-
-    return []
 
 def process_daily_articles() -> list[ArticleDBResult]:
     """Processes daily articles"""

@@ -1,24 +1,10 @@
-from typing import Optional
-from pydantic import BaseModel
 from config import NEWS_API_TOKEN
 from service.http_service import HTTPService
 import time
+from lib.types import Article
 
 news_service = HTTPService('https://newsapi.org/v2')
 
-class ArticleSource(BaseModel):
-    id: Optional[str] = None
-    name: Optional[str] = None
-
-class Article(BaseModel):
-    url: Optional[str] = None
-    title: Optional[str] = None
-    author: Optional[str] = None
-    source: Optional[ArticleSource]
-    content: Optional[str] = None
-    urlToImage: Optional[str] = None
-    publishedAt: Optional[str] = None
-    summary: Optional[str] = None
 
 def get_top_articles(pages: int = 1) -> list[Article]:
     articles = []
