@@ -14,5 +14,5 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-app.include_router(static_routes.router)
 app.include_router(news_routes.router, prefix='/api')
+app.include_router(static_routes.router)
