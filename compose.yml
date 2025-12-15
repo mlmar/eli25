@@ -1,8 +1,6 @@
 services:
     app:
         build: ./
-        env_file:
-            - .env
         environment:
             - HF_TOKEN=${HF_TOKEN}
             - NEWS_API_TOKEN=${NEWS_API_TOKEN}
