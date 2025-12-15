@@ -4,7 +4,7 @@ services:
         env_file:
             - .env
         environment:
-            - HF_TOKEN
-            - NEWS_API_TOKEN
-            - SUPABASE_URL
-            - SUPABASE_KEY
+            - HF_TOKEN=${HF_TOKEN}
+            - NEWS_API_TOKEN=${NEWS_API_TOKEN}
+            - SUPABASE_URL=${SUPABASE_URL}
+            - SUPABASE_KEY=${SUPABASE_KEY}
