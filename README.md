@@ -3,7 +3,7 @@
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/07e7904f-456e-4457-89f9-999d1bb08371" />
 
 -   Hosted at https://eli25.vercel.app
--   Articles are pulled daily from newsapi.org
+-   Articles are pulled daily from [NewsAPI](https://newsapi.org/)
 -   Summarized with hugging face model [sshleifer/distilbart-cnn-12-6](https://huggingface.co/sshleifer/distilbart-cnn-12-6)
 -   Results are processed and saved to a Supabase database with Github actions and Docker
 
