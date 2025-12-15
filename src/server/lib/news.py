@@ -58,9 +58,9 @@ def process_articles(target_date: date) -> list[ArticleDBResult]:
                         'article': article,
                         'summary': summary
                     })
+                    articles_table.insert(data[-1])
             except:
                 print(f'Failed to summarize {article['url']}')
                 
         print(f'Successfully processed {len(data)} articles')
-        articles_table.insert(data)
         return data
