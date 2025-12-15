@@ -3,7 +3,7 @@
 -   Hosted at https://eli25.vercel.app
 -   Articles are pulled daily from newsapi.org
 -   Summarized with hugging face model [sshleifer/distilbart-cnn-12-6](https://huggingface.co/sshleifer/distilbart-cnn-12-6)
--   Results are processed and saved to a Supabase database with Github actions
+-   Results are processed and saved to a Supabase database with Github actions and Docker
 
 ## Stack
 
@@ -23,6 +23,7 @@
         -   [x] Parse article text with [trafilatura](https://trafilatura.readthedocs.io/en/latest/)
         -   [x] Summarize article text with hugging face model [sshleifer/distilbart-cnn-12-6](https://huggingface.co/sshleifer/distilbart-cnn-12-6)
     -   Automation
+        -   [x] Run Docker compose or process_daily_articles.py script to process daily articles
         -   [x] Automate daily summaries with Github actions
     -   fastapi routes for:
         -   [x] Latest articles and summaries

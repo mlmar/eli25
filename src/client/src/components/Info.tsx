@@ -21,17 +21,17 @@ export function Info({ className }: InfoProps) {
                 className
             )}
         >
-            <label>
+            <p>
                 Articles are pulled daily from
-                <a className='font-bold ml-1 hover:underline' href={newsAPIUrl}>
+                <a className='font-bold ml-1 mr-1 hover:underline' href={newsAPIUrl}>
                     {newsAPI}
                 </a>
-                , summarized with
+                and summarized with
                 <a className='font-bold ml-1 hover:underline' href={modelUrl}>
                     {model}
                 </a>
                 .
-            </label>
+            </p>
             <p>
                 The following content may contain inaccuracies, omissions, or misinterpretations of the original source
                 material. This should not be considered a substitute for the original article or professional advice.
