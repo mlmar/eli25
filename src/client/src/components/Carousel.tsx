@@ -7,8 +7,20 @@ type CarouselProps = PropsWithChildren & {
 };
 
 export function Carousel({ className, children }: CarouselProps) {
-    return <section className={css(...styles, className)}>{children}</section>;
+    return <section className={css(...carouselStyles, className)}>{children}</section>;
 }
+
+const carouselStyles = [
+    'carousel',
+    'grid',
+    'lg:grid-cols-2',
+    'col-span-3',
+    'h-full',
+    'gap-10',
+    'lg:gap-20',
+    'min-h-fit',
+    '*:w-full'
+];
 
 Carousel.Card = function CarouselCard({ children }: PropsWithChildren<{ className?: string }>) {
     const ref = useRef<HTMLElement | null>(null);
@@ -30,15 +42,3 @@ Carousel.Card = function CarouselCard({ children }: PropsWithChildren<{ classNam
         </>
     );
 };
-
-const styles = [
-    'carousel',
-    'grid',
-    'lg:grid-cols-2',
-    'col-span-3',
-    'h-full',
-    'gap-10',
-    'lg:gap-20',
-    'min-h-fit',
-    '*:min-h-fit *:w-full'
-];

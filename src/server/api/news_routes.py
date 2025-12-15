@@ -16,7 +16,7 @@ def get_latest_articles()  -> list[ArticleDBResult]:
     if date_response and len(date_response.data) > 0:
         latest_date = date_response.data[0]['date']
         db_response = articles_table.get_table().select('date,article,summary').eq('date', latest_date).execute()
-        print(f'Successfulyl fetched {len(db_response.data)} articles for {latest_date} from the db')
+        print(f'Successfully fetched {len(db_response.data)} articles for {latest_date} from the db')
         return db_response.data
 
     return []

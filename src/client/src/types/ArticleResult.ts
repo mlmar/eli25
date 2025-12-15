@@ -1,5 +1,5 @@
 export type ArticleResult = {
-    article: {
+    article?: {
         url: string;
         title: string;
         author: string;
@@ -11,6 +11,6 @@ export type ArticleResult = {
         urlToImage: string;
         publishedAt: string;
     };
-    date: string;
-    summary: string
+    date?: string;
+    summary?: string
 }

@@ -6,14 +6,19 @@ const newsAPIUrl = 'https://newsapi.org/';
 const model = 'sshleifer/distilbart-cnn-12-6';
 const modelUrl = 'https://huggingface.co/sshleifer/distilbart-cnn-12-6';
 
-export function Info() {
+type InfoProps = {
+    className?: string;
+};
+
+export function Info({ className }: InfoProps) {
     return (
         <section
             className={css(
-                'flex flex-col gap-2 p-5 m-10 mb-0 border border-violet-500 text-white',
+                'flex flex-col gap-2 p-5 border border-violet-500 text-white',
                 styles.cardShadow,
                 styles.cardRadius,
-                styles.altBg
+                styles.altBg,
+                className
             )}
         >
             <label>
