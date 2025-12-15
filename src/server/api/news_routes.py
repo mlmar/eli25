@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 import config
 from lib.db.database_table import DatabaseTable
-from lib.news import ArticleDBResult
+from lib.types import ArticleDBResult
 
 router = APIRouter()
 
