@@ -15,12 +15,17 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                 styles.cardBg,
                 styles.cardShadow,
                 styles.cardRadius,
-                className
+                className,
+                {
+                    placeholder: placeholder
+                }
             )}
             {...rest}
         >
             <article className='flex flex-col xl:flex-row basis-full'>
-                {placeholder && <div className='flex basis-50 cursor-pointer basis-full h-full bg-indigo-500'></div>}
+                {placeholder && (
+                    <div className='flex basis-50 cursor-pointer basis-full h-full bg-indigo-500 min-h-60'></div>
+                )}
                 {!placeholder && (
                     <a href={article?.url} className='flex basis-50 cursor-pointer basis-full h-full'>
                         <img
@@ -30,7 +35,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                         />
                     </a>
                 )}
-                {placeholder && <div className='flex flex-col basis-full p-5 gap-3 h-60'></div>}
+                {placeholder && <div className='flex flex-col basis-full p-5 gap-3'></div>}
                 {!placeholder && (
                     <aside className='flex flex-col basis-full p-5 gap-3'>
                         <h2>
