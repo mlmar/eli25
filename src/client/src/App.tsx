@@ -12,7 +12,7 @@ export default function App() {
     const { data: articles, isLoading: isArticlesLoading } = useArticles();
 
     return (
-        <main className='bg-neutral-5500 h-full h-full w-full flex flex-col flex-auto justify-center bg-neutral-200 overflow-auto relative'>
+        <main className='bg-neutral-5500 h-full h-full w-full flex flex-col flex-auto justify-center bg-neutral-200'>
             <header
                 className={css(
                     'flex items-center justify-between lg:pl-10 lg:pr-10 pl-5 pr-5 pt-3 pb-3 text-white shadow-md',
