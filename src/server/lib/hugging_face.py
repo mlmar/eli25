@@ -6,8 +6,8 @@ __pipe = None
 def get_pipeline():
     """Initializes pipeline model"""
     global __pipe
-    if __pipe is None and config.model:
-        model_id = config.model
+    if __pipe is None and config.MODEL:
+        model_id = config.MODEL
         tokenizer = AutoTokenizer.from_pretrained(model_id)
         model = AutoModelForSeq2SeqLM.from_pretrained(
             model_id,

@@ -1,4 +1,5 @@
 from datetime import date
+import traceback
 
 import config
 from lib import agent
@@ -44,6 +45,7 @@ def process_articles(target_date: date) -> list[ArticleDBResult]:
                     })
                     articles_table.insert(data[-1])
             except:
+                traceback.print_exc()
                 print(f'Failed to summarize {article['url']}')
                 
         print(f'Successfully processed {len(data)} articles')
