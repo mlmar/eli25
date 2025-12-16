@@ -12,7 +12,7 @@ export default function App() {
     const { data: articles, isLoading: isArticlesLoading } = useArticles();
 
     return (
-        <main className='bg-neutral-5500 h-full h-full w-full flex flex-col flex-auto justify-center bg-neutral-200 overflow-auto'>
+        <main className='bg-neutral-5500 h-full h-full w-full flex flex-col flex-auto justify-center bg-neutral-200 overflow-auto relative'>
             <header
                 className={css(
                     'flex items-center justify-between lg:pl-10 lg:pr-10 pl-5 pr-5 pt-3 pb-3 text-white shadow-md',
@@ -27,9 +27,9 @@ export default function App() {
             </header>
             <section className='flex flex-col basis-full overflow-auto'>
                 <Info className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0' />
-                <h1 className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0 text-2xl font-bold'>
+                <h2 className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0 text-2xl font-bold'>
                     {isArticlesLoading ? 'Loading articles...' : parseDateString(articles[0].date)}
-                </h1>
+                </h2>
                 {isArticlesLoading && (
                     <Carousel className='lg:p-10 p-5 placeholder'>
                         <ArticleCard placeholder />

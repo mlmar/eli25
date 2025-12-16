@@ -7,7 +7,11 @@ type CarouselProps = PropsWithChildren & {
 };
 
 export function Carousel({ className, children }: CarouselProps) {
-    return <section className={css(...carouselStyles, className)}>{children}</section>;
+    return (
+        <section role='region' aria-label='Articles list' className={css(...carouselStyles, className)}>
+            {children}
+        </section>
+    );
 }
 
 const carouselStyles = [
