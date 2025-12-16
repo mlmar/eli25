@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
     schedule:
-        - cron: "0 14 * * *" # Runs at 6am PST every day
+        - cron: "0 8 * * *" # Runs at 6am PST every day
     workflow_dispatch: # Allows you to run it manually for testing
 
 jobs:
