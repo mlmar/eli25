@@ -12,3 +12,7 @@ MODEL = os.environ.get('MODEL')
 
 SUPABASE_ARTICLES_TABLE = 'articles'
 MAX_PAGES = 2
+
+print('Config loaded')
+print(f'VITE_CLIENT_URL: {VITE_CLIENT_URL}')
+print(f'MODEL: {MODEL}')

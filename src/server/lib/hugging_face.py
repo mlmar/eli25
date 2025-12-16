@@ -8,6 +8,7 @@ def get_pipeline():
     global __pipe
     if __pipe is None and config.MODEL:
         model_id = config.MODEL
+        print(f'Using model ${model_id}')
         tokenizer = AutoTokenizer.from_pretrained(model_id)
         model = AutoModelForSeq2SeqLM.from_pretrained(
             model_id,
