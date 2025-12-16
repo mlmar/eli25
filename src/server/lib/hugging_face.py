@@ -2,7 +2,7 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 
 import config
 
-model_id = config.MODEL
+model_id = 'sshleifer/distilbart-cnn-12-6'
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForSeq2SeqLM.from_pretrained(
     model_id,

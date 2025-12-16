@@ -2,7 +2,6 @@ services:
     app:
         build: ./
         environment:
-            - MODEL
             - HF_TOKEN
             - NEWS_API_TOKEN
             - SUPABASE_URL
