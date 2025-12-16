@@ -1,4 +1,9 @@
 services:
     app:
         build: ./
-        environment: Production
+        environment:
+            - MODEL
+            - HF_TOKEN
+            - NEWS_API_TOKEN
+            - SUPABASE_URL
+            - SUPABASE_KEY
