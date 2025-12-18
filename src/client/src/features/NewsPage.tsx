@@ -14,6 +14,7 @@ export function NewsPage() {
         strict: false
     });
     const { data, isLoading: isArticlesLoading } = useArticles(currentDate);
+    const dateString = parseDateString(currentDate || data?.results?.[0]?.date);
 
     return (
         <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto justify-center bg-neutral-200'>
@@ -31,12 +32,13 @@ export function NewsPage() {
             </header>
             <section className='flex flex-col basis-full overflow-auto'>
                 <Info className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0' />
-                <h2 className={styles.h2}>
-                    <ButtonLink path={data?.prev_date}>&#171;</ButtonLink>
-                    {parseDateString(currentDate || data?.results?.[0]?.date)}
-
-                    <ButtonLink path={data?.next_date}>&#187;</ButtonLink>
-                </h2>
+                {Boolean(dateString) && (
+                    <h2 className={styles.h2}>
+                        <ButtonLink path={data?.prev_date}>&#171;</ButtonLink>
+                        {dateString}
+                        <ButtonLink path={data?.next_date}>&#187;</ButtonLink>
+                    </h2>
+                )}
                 {!data?.results?.length && !isArticlesLoading && <h3 className={styles.h3}>No Articles Found</h3>}
                 {isArticlesLoading && <h3 className={styles.h3}>Loading Articles...</h3>}
                 {isArticlesLoading && (
