@@ -1,9 +1,9 @@
 import { styles } from '@/styles';
-import type { ArticleResult } from '@/types/ArticleResult';
+import type { Article } from '@/types/Article';
 import { css } from '@/util/css';
 import { useId } from 'react';
 
-type ArticleCardProps = ArticleResult & {
+type ArticleCardProps = Article & {
     className?: string;
     placeholder?: boolean;
 };

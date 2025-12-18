@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import tanstackRouter from '@tanstack/router-plugin/vite';
 import path from 'path';
 // @ts-ignore
 import eslint from 'vite-plugin-eslint';
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,6 +17,10 @@ export default defineConfig({
         },
     },
     plugins: [
+        tanstackRouter({
+            target: 'react',
+            autoCodeSplitting: true,
+        }),
         react(),
         eslint(),
         tailwindcss()
@@ -24,10 +29,6 @@ export default defineConfig({
         environment: 'jsdom',
         globals: true, // Enables global access to Vitest APIs like `describe`, `it`, `expect`
         setupFiles: ['./src/test/setupTests.ts'],
-    },
-    build: {
-        outDir: '../server/static',
-        emptyOutDir: true
     },
     envDir: '../../'
 })
