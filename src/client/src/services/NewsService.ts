@@ -9,7 +9,7 @@ export class NewsService {
      */
     static async getLatestArticles(date: string | null): Promise<NewsResult> {
         const params = date ? { date } : null;
-        const response = await HTTPService.get<{ date: string | null }, NewsResult>(Config.SERVER_URL + '/news', params);
+        const response = await HTTPService.get<{ date: string } | null, NewsResult>(Config.SERVER_URL + '/news', params);
         return response;
     }
 }
