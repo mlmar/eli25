@@ -30,7 +30,7 @@ export function NewsPage() {
             </header>
             <section className='flex flex-col basis-full overflow-auto'>
                 <Info className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0' />
-                <h2 className='flex lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0 text-2xl font-bold gap-1 :h'>
+                <h2 className='flex lg:mt-10 lg:ml-10 lg:mr-10 lg:justify-start justify-center m-5 mb-0 text-2xl font-bold gap-1 :h'>
                     <Link to={'/' + data?.prev_date} disabled={!data?.prev_date}>
                         <button className={buttonClassNames} disabled={!data?.prev_date}>
                             &#171;
