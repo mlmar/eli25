@@ -12,7 +12,7 @@ export function NewsPage() {
     const params = useParams({
         strict: false
     });
-    const { data, isLoading: isArticlesLoading } = useArticles(params.date);
+    const { data, isLoading: isArticlesLoading } = useArticles(params.date ?? '');
 
     return (
         <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto justify-center bg-neutral-200'>
