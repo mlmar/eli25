@@ -6,13 +6,14 @@ import { css } from '@/util/css';
 import { styles } from '@/styles';
 import { IconLink } from '@/components/IconLink';
 import { parseDateString } from '@/util/date';
-import { Link, useParams } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
+import { ButtonLink } from '@/components/ButtonLink';
 
 export function NewsPage() {
-    const params = useParams({
+    const { date: currentDate = '' } = useParams({
         strict: false
     });
-    const { data, isLoading: isArticlesLoading } = useArticles(params.date ?? '');
+    const { data, isLoading: isArticlesLoading } = useArticles(currentDate);
 
     return (
         <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto justify-center bg-neutral-200'>
@@ -30,22 +31,14 @@ export function NewsPage() {
             </header>
             <section className='flex flex-col basis-full overflow-auto'>
                 <Info className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0' />
-                <h2 className='flex lg:mt-10 lg:ml-10 lg:mr-10 lg:justify-start justify-center m-5 mb-0 text-2xl font-bold gap-1 :h'>
-                    <Link to={'/' + data?.prev_date} disabled={!data?.prev_date}>
-                        <button className={buttonClassNames} disabled={!data?.prev_date}>
-                            &#171;
-                        </button>
-                    </Link>
-                    {isArticlesLoading ? 'Loading articles...' : parseDateString(data?.results?.[0]?.date)}
-                    <Link to={'/' + data?.next_date} disabled={!data?.next_date}>
-                        <button className={buttonClassNames} disabled={!data?.next_date}>
-                            &#187;
-                        </button>
-                    </Link>
+                <h2 className={styles.h2}>
+                    <ButtonLink path={data?.prev_date}>&#171;</ButtonLink>
+                    {parseDateString(currentDate || data?.results?.[0]?.date)}
+
+                    <ButtonLink path={data?.next_date}>&#187;</ButtonLink>
                 </h2>
-                {!data?.results?.length && !isArticlesLoading && (
-                    <h3 className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0 text-2xl font-bold'>No Articles Found</h3>
-                )}
+                {!data?.results?.length && !isArticlesLoading && <h3 className={styles.h3}>No Articles Found</h3>}
+                {isArticlesLoading && <h3 className={styles.h3}>Loading Articles...</h3>}
                 {isArticlesLoading && (
                     <Carousel className='lg:p-10 p-5 placeholder'>
                         <ArticleCard placeholder />
@@ -70,5 +63,3 @@ const githubImage = '/github.png';
 const githubUrl = 'https://github.com/mlmar/eli25';
 const portfolioImage = '/m.ico';
 const portfolioUrl = 'https://mlmar.github.io';
-
-const buttonClassNames = `cursor-pointer pl-2 pr-2 hover:${styles.altTextColor} disabled:opacity-50`;
