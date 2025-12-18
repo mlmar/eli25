@@ -46,11 +46,11 @@ npm install --prefix ./src/client
 Create an .env file in the root directory with the folllowing contents:
 
 ```properties
-DEV=YOUR_DEV
-VITE_CLIENT_URL=YOUR_VITE_CLIENT_URL
-VITE_SERVER_URL=YOUR_VITE_SERVER_URL
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+DEV=True
+VITE_CLIENT_URL=https://localhost:3000
+VITE_SERVER_URL=https://localhost:3300/api
 PYTHONPATH=./src/server
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 HF_TOKEN=YOUR_HF_TOKEN
 NEWS_API_TOKEN=YOUR_NEWS_API_TOKEN
 SUPABASE_URL=YOUR_SUPABASE_URL
