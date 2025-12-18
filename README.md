@@ -13,6 +13,7 @@
 
     -   [React](https://react.dev/learn)
     -   [TypeScript](typescriptlang.org/cheatsheets/)
+    -   [@tanstack/router](https://tanstack.com/router/latest)
     -   [@tanstack/query](https://tanstack.com/query/latest)
     -   [tailwindcss](https://tailwindcss.com/)
 
@@ -25,11 +26,12 @@
         -   [x] Parse article text with [trafilatura](https://trafilatura.readthedocs.io/en/latest/)
         -   [x] Summarize article text with hugging face model [sshleifer/distilbart-cnn-12-6](https://huggingface.co/sshleifer/distilbart-cnn-12-6)
     -   Automation
-        -   [x] Run Docker compose or process_daily_articles.py script to process daily articles
-        -   [x] Automate daily summaries with Github actions
+        -   [x] Run Docker compose or `process_daily_articles.py` script to process daily articles
+        -   [x] Automate daily summaries with GitHub actions
     -   fastapi routes for:
-        -   [x] Latest articles and summaries
-        -   [x] Static site
+        -   [x] `/news/` - Latest articles and summaries
+        -   [x] `/news/YYYY-MM-DD` - Loading older articles and summaries (at least previous ones that were saved)
+        -   [x] `/` - Static site
 
 ## Installation
 
