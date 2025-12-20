@@ -9,7 +9,7 @@ from service.news_service import get_top_articles
 from lib.types import ArticleDBResult
 from util.date_util import get_today_pst
 
-articles_table = DatabaseTable(config.SUPABASE_ARTICLES_TABLE)
+articles_table = DatabaseTable(config.SUPABASE_ARTICLES_TABLE, config.SUPABASE_ARTICLES_TABLE_SCHEMA)
 
 def process_daily_articles() -> list[ArticleDBResult]:
     """Processes daily articles"""

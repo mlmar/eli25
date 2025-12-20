@@ -20,7 +20,7 @@ def get_news(date: str | None = None) -> NewsResult:
     else:
         return get_latest_articles()
 
-articles_table = DatabaseTable(config.SUPABASE_ARTICLES_TABLE)
+articles_table = DatabaseTable(config.SUPABASE_ARTICLES_TABLE, config.SUPABASE_ARTICLES_TABLE_SCHEMA)
 def get_latest_articles() -> NewsResult:
     """Fetches latest article results from the db"""
     date_response = articles_table.get_table().select('date').order('date', desc=True).limit(1).execute()
