@@ -35,15 +35,11 @@
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
+Install the following
 
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r src/server/requirements.txt
-pip install
-npm install --prefix ./src/client
-```
+-   [Node Package Manager](https://www.npmjs.com/)
+-   [Python package manager](https://pip.pypa.io/en/stable/)
+-   [Docker Desktop](https://www.docker.com/)
 
 Create an .env file in the root directory with the folllowing contents:
 
@@ -59,16 +55,47 @@ SUPABASE_URL=YOUR_SUPABASE_URL
 SUPABASE_KEY=YOUR_SUPABASE_KEY
 ```
 
-## Run Server
+Run the following in the `eli25` directory
 
 ```bash
-cd src/server
-fastapi dev main.py --port 3300
+git clone https://github.com/mlmar/eli25
+cd eli25
+
+make install
 ```
 
-## Run Client
+## Development and Debugging in VSCode
+
+In the `eli25` directory, run the following in the terminal:
 
 ```bash
-cd src/client
-npm run dev
+make run
+```
+
+This will launch the Docker container for both the server and client.
+All dependencies should be installed. Ignore frozen module warnings.
+
+While development Docker container is running, navigate to the Run and Debug panel.
+
+**Attach to the Python FastAPI server to run it.**
+
+![Python FastAPI Debugger](readme/fastapi.png)
+
+Attach to the React Vite server:
+
+![React Vite Debugger](readme/vite.png)
+
+## Production
+
+Set the following env properties
+
+```properties
+VITE_CLIENT_URL=https://PRODUCTION_URL.com
+VITE_SERVER_URL=https://PRODUCTION_URL.com/api
+```
+
+Production
+
+```bash
+docker build .
 ```

@@ -1,4 +1,32 @@
 services:
+    server: # Local development
+        build: ./src/server
+        ports:
+            - "3300:3300"
+            - "5678:5678"
+        volumes:
+            - "./src/server:/app"
+        environment:
+            - DEV
+            - VITE_SERVER_URL
+            - VITE_CLIENT_URL
+            - HF_TOKEN
+            - NEWS_API_TOKEN
+            - SUPABASE_URL
+            - SUPABASE_KEY
+    client: # Local development
+        build: ./src/client
+        ports:
+            - "3000:3000"
+        volumes:
+            - "./src/client:/app"
+            - "/app/node_modules"
+        depends_on:
+            - server
+        environment:
+            - DEV
+            - VITE_SERVER_URL
+            - VITE_CLIENT_URL
     app:
         build: ./
         environment:
