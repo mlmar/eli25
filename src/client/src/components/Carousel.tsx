@@ -19,7 +19,6 @@ const carouselStyles = [
     'grid',
     'lg:grid-cols-2',
     'col-span-3',
-    'h-full',
     'gap-10',
     'lg:gap-20',
     'min-h-fit',
