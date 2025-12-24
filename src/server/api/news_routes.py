@@ -36,7 +36,7 @@ def get_latest_articles() -> NewsResult:
     }
 
 def get_articles(target_date: str) -> NewsResult:
-    dates_response = get_client().rpc('get_news_dates').execute()
+    dates_response = get_client().schema(config.SUPABASE_ARTICLES_TABLE_SCHEMA).rpc('get_news_dates', None).execute()
 
     dates = []
     if dates_response  and len(dates_response.data) > 0:
