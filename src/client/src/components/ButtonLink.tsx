@@ -10,7 +10,7 @@ export function ButtonLink({ path, children }: ButtonLinkProps) {
     return (
         <Link to={'/' + path} disabled={!path}>
             <button
-                className={`cursor-pointer pl-2 pr-2 hover:${styles.altTextColor} text-select-none disabled:opacity-20 disabled:cursor-default `}
+                className={`cursor-pointer pl-2 pr-2 hover:${styles.altTextColor} text-select-none disabled:invisible disabled:cursor-default `}
                 disabled={!path}
                 title={path ?? ''}
             >

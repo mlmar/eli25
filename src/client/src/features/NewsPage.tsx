@@ -3,16 +3,16 @@ import { ArticleCard } from '@/components/ArticleCard';
 import { Carousel } from '@/components/Carousel';
 import { Info } from '@/components/Info';
 import { styles } from '@/styles';
-import { parseDateString } from '@/util/date';
+import { toFullDateString } from '@/util/date';
 import { useParams } from '@tanstack/react-router';
 import { ButtonLink } from '@/components/ButtonLink';
 
 export function NewsPage() {
-    const { date: currentDate = '' } = useParams({
+    const { date: currentDate } = useParams({
         strict: false
     });
     const { data, isLoading: isArticlesLoading } = useArticles(currentDate);
-    const dateString = parseDateString(currentDate || data?.results?.[0]?.date);
+    const dateString = toFullDateString(currentDate || data?.results?.[0]?.date);
 
     function renderNavigation() {
         return (
@@ -48,7 +48,7 @@ export function NewsPage() {
                         </Carousel.Card>
                     ))}
                 </Carousel>
-                {data?.results?.length && !isArticlesLoading && renderNavigation()}
+                {Boolean(data?.results?.length) && !isArticlesLoading && renderNavigation()}
             </section>
         </>
     );

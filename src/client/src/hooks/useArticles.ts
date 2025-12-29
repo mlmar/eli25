@@ -1,4 +1,5 @@
 import { NewsService } from "@/services/NewsService";
+import { getTodaysDateString } from "@/util/date";
 import { useQuery } from "@tanstack/react-query";
 
 type UseArticlesResult = {
@@ -7,10 +8,11 @@ type UseArticlesResult = {
     isError: boolean
 }
 
-export function useArticles(date: string | null): UseArticlesResult {
+const DEFAULT_DATE = getTodaysDateString();
+export function useArticles(date: string = DEFAULT_DATE): UseArticlesResult {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['news-articles', date],
-        queryFn: async () => NewsService.getLatestArticles(date)
+        queryFn: async () => NewsService.getArticles(date)
     })
 
     return { data, isLoading, isError }

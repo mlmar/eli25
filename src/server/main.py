@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api import news_routes, static_routes
+from api import graphql_routes, news_routes, static_routes
 import config
 
 app = FastAPI()
@@ -15,4 +15,5 @@ app.add_middleware(
 )
 
 app.include_router(news_routes.router, prefix='/api')
+app.include_router(graphql_routes.router, prefix='/api')
 app.include_router(static_routes.router)

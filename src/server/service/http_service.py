@@ -41,7 +41,7 @@ class HTTPService:
         """
         url = self.base_url + endpoint
         try:
-            response = requests.post(url, data=data, params=params, headers=headers)
+            response = requests.post(url, json=data, params=params, headers=headers)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
