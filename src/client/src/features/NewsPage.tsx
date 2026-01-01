@@ -18,9 +18,13 @@ export function NewsPage() {
         return (
             Boolean(dateString) && (
                 <h2 className={styles.h2}>
-                    <ButtonLink path={data?.prev_date}>&#171;</ButtonLink>
+                    <ButtonLink path={data?.prev_date} loading={isArticlesLoading}>
+                        &#171;
+                    </ButtonLink>
                     {dateString}
-                    <ButtonLink path={data?.next_date}>&#187;</ButtonLink>
+                    <ButtonLink path={data?.next_date} loading={isArticlesLoading}>
+                        &#187;
+                    </ButtonLink>
                 </h2>
             )
         );
