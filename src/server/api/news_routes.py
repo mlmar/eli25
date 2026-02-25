@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from pydantic import BaseModel
 import config
 from lib.db.client import get_client
@@ -14,7 +14,8 @@ class NewsResult(BaseModel):
 router = APIRouter()
 
 @router.get('/news')
-def get_news(date: str | None = None) -> NewsResult:
+def get_news(response: Response, date: str | None = None) -> NewsResult:
+    response.headers['Cache-Control'] = 'public, max-age=3600'
     if date:
         return get_articles(date)
     else:
