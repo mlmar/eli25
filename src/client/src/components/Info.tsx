@@ -22,7 +22,7 @@ export function Info({ className }: InfoProps) {
                 className
             )}
         >
-            <InfoIcon className='h-[2em] mt-[-.2em]' />
+            <InfoIcon className='text-base' />
             <div className='flex flex-col gap-2'>
                 <p>
                     Articles are pulled daily from
