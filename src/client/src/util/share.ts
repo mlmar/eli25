@@ -17,7 +17,6 @@ export async function shareText(text: string | undefined): Promise<void> {
             try {
                 await navigator.share(shareData);
             } catch (error) {
-                alert('Sharing not supported for this device.');
                 console.error(error);
             }
         }
