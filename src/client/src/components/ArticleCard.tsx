@@ -18,7 +18,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
         <article
             aria-labelledby={headingId}
             className={css(
-                'flex flex-col xl:flex-row overflow-hidden h-fit',
+                'flex flex-col overflow-hidden h-fit',
                 styles.cardBg,
                 styles.cardShadow,
                 styles.cardRadius,
@@ -49,7 +49,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                                 <div
                                     role='img'
                                     aria-label='No image available'
-                                    className='self-center w-full text-center cursor-pointer'
+                                    className='self-center w-full cursor-pointer h-[15em] flex items-center justify-center'
                                 >
                                     No Image Available
                                 </div>
@@ -84,7 +84,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                         )}
                     </div>
                 ))}
-            {placeholder && <div className='flex flex-col basis-full p-5 gap-3' aria-hidden='true'></div>}
+            {placeholder && <div className='flex flex-col basis-full p-5 gap-3 min-h-40' aria-hidden='true'></div>}
             {!placeholder && (
                 <aside className='flex flex-col basis-full p-5 gap-3 min-h-fit'>
                     <h2 id={headingId}>

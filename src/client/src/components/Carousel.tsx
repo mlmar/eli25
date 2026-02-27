@@ -17,10 +17,10 @@ export function Carousel({ className, children }: CarouselProps) {
 const carouselStyles = [
     'carousel',
     'grid',
-    'lg:grid-cols-2',
+    'md:grid-cols-2',
+    'lg:grid-cols-3',
     'col-span-3',
     'gap-10',
-    'lg:gap-20',
     'min-h-fit',
     '*:w-full'
 ];

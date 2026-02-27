@@ -16,36 +16,34 @@ export function NewsPage() {
 
     function renderNavigation() {
         return (
-            Boolean(dateString) && (
-                <h2 className={styles.h2}>
-                    <ButtonLink path={data?.prev_date} loading={isArticlesLoading}>
-                        &#171;
-                    </ButtonLink>
-                    {dateString}
-                    <ButtonLink path={data?.next_date} loading={isArticlesLoading}>
-                        &#187;
-                    </ButtonLink>
-                </h2>
-            )
+            <h2 className={styles.navigation}>
+                <ButtonLink path={data?.prev_date} loading={isArticlesLoading}>
+                    &#171;
+                </ButtonLink>
+                {data?.results?.length && dateString}
+                {!data?.results?.length && !isArticlesLoading && 'No articles Found'}
+                {isArticlesLoading && 'Loading Articles...'}
+                <ButtonLink path={data?.next_date} loading={isArticlesLoading}>
+                    &#187;
+                </ButtonLink>
+            </h2>
         );
     }
 
     return (
         <>
-            <section className='flex flex-col basis-full overflow-auto'>
-                <Info className='lg:mt-10 lg:ml-10 lg:mr-10 m-5 mb-0' />
+            <section className='flex flex-col basis-full overflow-auto gap-5 lg:p-10 md:p-5 p-2'>
+                <Info />
                 {renderNavigation()}
-                {!data?.results?.length && !isArticlesLoading && <h3 className={styles.h3}>No Articles Found</h3>}
-                {isArticlesLoading && <h3 className={styles.h3}>Loading Articles...</h3>}
                 {isArticlesLoading && (
-                    <Carousel className='lg:p-10 p-5 placeholder'>
+                    <Carousel className='placeholder'>
                         <ArticleCard placeholder />
                         <ArticleCard placeholder />
                         <ArticleCard placeholder />
                         <ArticleCard placeholder />
                     </Carousel>
                 )}
-                <Carousel className='lg:p-10 p-5'>
+                <Carousel className=''>
                     {data?.results?.map((props) => (
                         <Carousel.Card key={props?.article?.url}>
                             <ArticleCard {...props} />
