@@ -17,6 +17,7 @@ export function Carousel({ className, children }: CarouselProps) {
 const carouselStyles = [
     'carousel',
     'grid',
+    'grid-rows-masonry',
     'md:grid-cols-2',
     'lg:grid-cols-3',
     'col-span-3',
@@ -35,7 +36,7 @@ Carousel.Card = function CarouselCard({ children }: PropsWithChildren<{ classNam
                 if (isValidElement(child)) {
                     return cloneElement(child, {
                         className: css((child.props as CarouselProps).className, {
-                            invisible: isElementVisible
+                            invisible: !isElementVisible
                         }),
                         ref: ref
                     } as React.Attributes);

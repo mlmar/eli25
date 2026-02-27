@@ -14,11 +14,52 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
     const hasUrl = Boolean(article?.url);
     const hasImage = Boolean(article?.urlToImage);
 
+    function renderImage() {
+        return !hasImage ? (
+            <div role='img' aria-label='No image available' className='self-center w-full text-center'>
+                No Image Available
+            </div>
+        ) : (
+            <img
+                className='flex object-cover bg-black text-white w-full h-full'
+                src={article?.urlToImage}
+                alt={article?.title ?? 'Article image'}
+                loading='lazy'
+            />
+        );
+    }
+
+    function renderSource() {
+        return (
+            Boolean(article?.source?.name) && (
+                <a
+                    className={css(
+                        'hover:underline',
+                        'focus:outline-none',
+                        'focus-visible:ring-2',
+                        'focus-visible:ring-offset-2',
+                        'focus-visible:ring-indigo-500',
+                        'font-semibold',
+                        'text-sm',
+                        'mr-2',
+                        styles.altTextColor
+                    )}
+                    href={article?.url ?? undefined}
+                    aria-label={`Source: ${article?.source?.name}`}
+                    target={hasUrl ? '_blank' : undefined}
+                    rel={hasUrl ? 'noopener noreferrer' : undefined}
+                >
+                    {`@${article?.source?.name}`}
+                </a>
+            )
+        );
+    }
+
     return (
         <article
             aria-labelledby={headingId}
             className={css(
-                'flex flex-col overflow-hidden h-fit',
+                'flex flex-col overflow-hidden h-full',
                 styles.cardBg,
                 styles.cardShadow,
                 styles.cardRadius,
@@ -39,29 +80,25 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                 (hasUrl ? (
                     <a
                         href={article?.url}
-                        className='flex basis-50 cursor-pointer basis-full h-auto bg-neutral-900 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500'
+                        className={css(
+                            'flex',
+                            'basis-50',
+                            'cursor-pointer',
+                            'basis-full',
+                            'bg-neutral-900',
+                            'text-white',
+                            'focus:outline-none',
+                            'focus-visible:ring-2',
+                            'focus-visible:ring-offset-2',
+                            'focus-visible:ring-indigo-500',
+                            'max-h-[20em]'
+                        )}
                         aria-label={`Open article: ${article?.title ?? 'Article'}`}
                         target='_blank'
                         rel='noopener noreferrer'
                     >
-                        <figure className='w-full h-full'>
-                            {!hasImage && (
-                                <div
-                                    role='img'
-                                    aria-label='No image available'
-                                    className='self-center w-full cursor-pointer h-[15em] flex items-center justify-center'
-                                >
-                                    No Image Available
-                                </div>
-                            )}
-                            {hasImage && (
-                                <img
-                                    className='flex object-cover bg-black text-white w-full h-full'
-                                    src={article?.urlToImage}
-                                    alt={article?.title ?? 'Article image'}
-                                    loading='lazy'
-                                />
-                            )}
+                        <figure className='w-full h-full object-cover'>
+                            {renderImage()}
                             <figcaption className='sr-only'>Article image for {article?.title}</figcaption>
                         </figure>
                     </a>
@@ -70,18 +107,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                         className='flex basis-50 cursor-default basis-full h-full bg-neutral-900 text-white'
                         aria-hidden='true'
                     >
-                        {!hasImage ? (
-                            <div role='img' aria-label='No image available' className='self-center w-full text-center'>
-                                No Image Available
-                            </div>
-                        ) : (
-                            <img
-                                className='flex object-cover bg-black text-white w-full h-full'
-                                src={article?.urlToImage}
-                                alt={article?.title ?? 'Article image'}
-                                loading='lazy'
-                            />
-                        )}
+                        {renderImage()}
                     </div>
                 ))}
             {placeholder && <div className='flex flex-col basis-full p-5 gap-3 min-h-40' aria-hidden='true'></div>}
@@ -90,7 +116,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                     <h2 id={headingId}>
                         {hasUrl ? (
                             <a
-                                className='font-bold hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500'
+                                className='font-semibold hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500'
                                 href={article?.url}
                                 aria-label={`Open article: ${article?.title ?? 'Article'}`}
                                 target='_blank'
@@ -99,28 +125,10 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                                 {article?.title}
                             </a>
                         ) : (
-                            <span className='font-bold'>{article?.title}</span>
+                            <span className='font-semibold'>{article?.title}</span>
                         )}
                     </h2>
-                    <h3>
-                        {article?.source?.name ? (
-                            <a
-                                className={css(
-                                    'hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500',
-                                    styles.altTextColor
-                                )}
-                                href={article?.url ?? undefined}
-                                aria-label={`Source: ${article?.source?.name}`}
-                                target={hasUrl ? '_blank' : undefined}
-                                rel={hasUrl ? 'noopener noreferrer' : undefined}
-                            >
-                                {`@${article?.source?.name}`}
-                            </a>
-                        ) : (
-                            <span className={styles.altTextColor}>Unknown source</span>
-                        )}
-                    </h3>
-                    <ul className='list-disc pl-5'>
+                    <ul className='h-full list-disc pl-5 text-[.9em]'>
                         {summary
                             ?.trim()
                             .split(delimiter)
@@ -128,6 +136,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                                 return Boolean(text.trim()) && <li key={text + '_' + i}> {text} </li>;
                             })}
                     </ul>
+                    {renderSource()}
                 </aside>
             )}
         </article>
