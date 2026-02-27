@@ -9,3 +9,19 @@
         }
     }
 }
+
+.toast {
+    @keyframes toast {
+        0% {
+            opacity: 0;
+        }
+        10%,
+        80% {
+            opacity: 100;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    animation: toast 1s ease forwards;
+}

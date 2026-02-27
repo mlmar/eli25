@@ -1,7 +1,9 @@
 import { styles } from '@/styles';
 import type { Article } from '@/types/Article';
 import { css } from '@/util/css';
-import { useId } from 'react';
+import { isMobile, shareText } from '@/util/share';
+import { Copy, Share } from 'feather-icons-react';
+import { useId, useState } from 'react';
 
 type ArticleCardProps = Article & {
     className?: string;
@@ -13,6 +15,8 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
     const headingId = `article-title-${id}`;
     const hasUrl = Boolean(article?.url);
     const hasImage = Boolean(article?.urlToImage);
+
+    const [toast, setToast] = useState<string | null>(null);
 
     function renderImage() {
         return !hasImage ? (
@@ -51,6 +55,48 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                 >
                     {`@${article?.source?.name}`}
                 </a>
+            )
+        );
+    }
+
+    function renderShareButton() {
+        const iconClassName = `h-[1.2em] hover:stroke-indigo-600`;
+        const mobile = isMobile();
+        return (
+            Boolean(article?.url) && (
+                <button
+                    className='cursor-pointer relative'
+                    aria-label='Share'
+                    title='Share'
+                    onClick={() => {
+                        shareText(article?.url);
+                        if (!mobile) {
+                            setToast('Copied to clipboard');
+                            setTimeout(() => setToast(null), 1000);
+                        }
+                    }}
+                >
+                    {mobile && <Share className={iconClassName} />}
+                    {!mobile && (
+                        <>
+                            <Copy className={iconClassName} />
+                            {!!toast && (
+                                <span
+                                    className={css(
+                                        'toast',
+                                        'absolute top-0 right-[100%]',
+                                        'text-nowrap text-sm font-semibold',
+                                        'px-2',
+                                        styles.cardBg,
+                                        styles.altTextColor
+                                    )}
+                                >
+                                    {toast}
+                                </span>
+                            )}
+                        </>
+                    )}
+                </button>
             )
         );
     }
@@ -136,7 +182,10 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                                 return Boolean(text.trim()) && <li key={text + '_' + i}> {text} </li>;
                             })}
                     </ul>
-                    {renderSource()}
+                    <footer className='flex justify-between'>
+                        {renderSource()}
+                        {renderShareButton()}
+                    </footer>
                 </aside>
             )}
         </article>
