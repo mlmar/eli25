@@ -190,7 +190,7 @@ export function NewsPage() {
                             }}
                         >
                             {data?.results?.map((props) => (
-                                <ArticleCard {...props} key={props?.article?.url} />
+                                <ArticleCard className='max-h-[70dvh]' {...props} key={props?.article?.url} />
                             ))}
                         </Carousel>
                     )}
