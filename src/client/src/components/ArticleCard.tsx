@@ -156,11 +156,11 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                 ))}
             {placeholder && <div className='flex flex-col basis-full p-5 gap-3 min-h-40' aria-hidden='true'></div>}
             {!placeholder && (
-                <aside className='flex flex-col p-5 gap-3 min-h-fit'>
+                <aside className='flex flex-col sm:p-4 p-2 gap-3 min-h-fit'>
                     <h2 id={headingId}>
                         {hasUrl ? (
                             <a
-                                className='font-semibold hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500'
+                                className='text-sm font-semibold hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500'
                                 href={article?.url}
                                 aria-label={`Open article: ${article?.title ?? 'Article'}`}
                                 target='_blank'
@@ -172,7 +172,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                             <span className='font-semibold'>{article?.title}</span>
                         )}
                     </h2>
-                    <ul className='h-full list-disc pl-5 text-[.9em]'>
+                    <ul className='h-full list-disc pl-5 text-[.8em]'>
                         {summary
                             ?.trim()
                             .split(delimiter)
