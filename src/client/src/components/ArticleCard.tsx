@@ -71,7 +71,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                     onClick={() => {
                         shareText(article?.url);
                         if (!mobile) {
-                            setToast('Copied to clipboard');
+                            setToast('URL Copied to Clipboard');
                             setTimeout(() => setToast(null), 1000);
                         }
                     }}
@@ -105,9 +105,8 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
         <article
             aria-labelledby={headingId}
             className={css(
-                'flex flex-col overflow-hidden h-full',
+                'flex flex-col overflow-hidden h-[40em] w-full',
                 styles.cardBg,
-                styles.cardShadow,
                 styles.cardRadius,
                 className,
                 {
@@ -118,7 +117,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
         >
             {placeholder && (
                 <div
-                    className='flex basis-50 cursor-default basis-full h-full bg-indigo-500 min-h-60'
+                    className='flex basis-50 cursor-default basis-full h-full w-full bg-indigo-500 min-h-60'
                     aria-hidden='true'
                 ></div>
             )}
@@ -128,16 +127,15 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                         href={article?.url}
                         className={css(
                             'flex',
-                            'basis-50',
                             'cursor-pointer',
-                            'basis-full',
                             'bg-neutral-900',
                             'text-white',
                             'focus:outline-none',
                             'focus-visible:ring-2',
                             'focus-visible:ring-offset-2',
                             'focus-visible:ring-indigo-500',
-                            'max-h-[20em]'
+                            'overflow-hidden',
+                            'flex-1'
                         )}
                         aria-label={`Open article: ${article?.title ?? 'Article'}`}
                         target='_blank'
@@ -158,7 +156,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                 ))}
             {placeholder && <div className='flex flex-col basis-full p-5 gap-3 min-h-40' aria-hidden='true'></div>}
             {!placeholder && (
-                <aside className='flex flex-col basis-full p-5 gap-3 min-h-fit'>
+                <aside className='flex flex-col p-5 gap-3 min-h-fit'>
                     <h2 id={headingId}>
                         {hasUrl ? (
                             <a

@@ -5,9 +5,7 @@ import { routeTree } from '@/routeTree.gen';
 
 // Create a new router instance
 const router = createRouter({
-    routeTree,
-    scrollRestoration: true,
-    scrollToTopSelectors: ['.overflow-auto']
+    routeTree
 });
 
 // Register the router instance for type safety

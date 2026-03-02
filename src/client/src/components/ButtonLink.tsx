@@ -4,21 +4,24 @@ import { Link } from '@tanstack/react-router';
 import type { PropsWithChildren } from 'react';
 
 type ButtonLinkProps = PropsWithChildren & {
+    className?: string;
     path: string | null | undefined;
     loading: boolean;
+    search: Record<string, unknown>;
+    disabled?: boolean;
 };
 
-export function ButtonLink({ path, children, loading }: ButtonLinkProps) {
+export function ButtonLink({ className, path, children, loading, search, disabled }: ButtonLinkProps) {
     return (
-        <Link to={'/' + path} disabled={!path}>
+        <Link className={css('flex', className)} to={'/' + path} search={search} disabled={!path}>
             <button
                 className={css(
-                    `cursor-pointer pl-2 pr-2 hover:${styles.altTextColor} text-select-none disabled:cursor-default disabled:opacity-20`,
+                    `cursor-pointer px-2 hover:${styles.altTextColor} text-select-none disabled:cursor-default disabled:opacity-20`,
                     {
                         'opacity-20': loading
                     }
                 )}
-                disabled={!path}
+                disabled={!path || disabled}
                 title={path ?? ''}
             >
                 {children}

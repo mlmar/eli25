@@ -15,16 +15,16 @@ export function Info({ className }: InfoProps) {
     return (
         <section
             className={css(
-                'flex gap-4 p-5 border border-violet-500 text-white',
+                'flex gap-4 p-5 border border-violet-500 text-white text-sm',
                 styles.cardShadow,
                 styles.cardRadius,
                 styles.altBg,
                 className
             )}
         >
-            <InfoIcon className='text-base min-w-[2em]' />
             <div className='flex flex-col gap-2'>
                 <p>
+                    <InfoIcon className='inline-block text-base min-w-[1.5em] mr-2 mt-[-.2em]' />
                     Articles are pulled daily from
                     <a className='font-bold ml-1 mr-1 hover:underline' href={newsAPIUrl}>
                         {newsAPI}
