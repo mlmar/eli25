@@ -11,7 +11,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
     return (
-        <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto justify-center bg-neutral-200 min-h-fit'>
+        <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto bg-neutral-200 min-h-fit'>
             <header
                 className={css(
                     'flex items-center justify-between lg:pl-10 lg:pr-10 sm:px-5 px-3 py-3 text-white border-b border-gray-500',
