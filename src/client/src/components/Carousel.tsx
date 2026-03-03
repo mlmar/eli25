@@ -41,7 +41,7 @@ export function Carousel({ className, children, position, direction, onSwipe }: 
                     transition={{
                         x: { type: 'spring', stiffness: 250, damping: 35, mass: 1 }
                     }}
-                    className='relative flex h-full w-full  items-center justify-center'
+                    className='relative flex h-full w-full shrink-0 items-center justify-center'
                 >
                     <div className='w-full h-full absolute right-full'>{allChildren[position - 1]}</div>
                     <div className='w-full h-full'>{allChildren[position]}</div>
