@@ -12,11 +12,14 @@ type CarouselProps = PropsWithChildren & {
 };
 
 export function Carousel({ className, children, position, direction, onSwipe }: CarouselProps) {
+    // Inside your Carousel component
+    const allChildren = Children.toArray(children);
+
     return (
-        <section role='region' aria-label='Articles list' className={css(...carouselStyles, className)}>
+        <section className={css(...carouselStyles, className)}>
             <AnimatePresence initial={false} mode='popLayout' custom={direction}>
                 <motion.div
-                    className='flex h-full w-full'
+                    key={position}
                     custom={direction}
                     variants={variants}
                     initial='enter'
@@ -38,27 +41,28 @@ export function Carousel({ className, children, position, direction, onSwipe }: 
                     transition={{
                         x: { type: 'spring', stiffness: 250, damping: 35, mass: 1 }
                     }}
-                    key={position}
+                    className='relative flex h-full w-full  items-center justify-center'
                 >
-                    {Children.toArray(children).at(position)}
+                    <div className='w-full h-full absolute right-full'>{allChildren[position - 1]}</div>
+                    <div className='w-full h-full'>{allChildren[position]}</div>
+                    <div className='w-full h-full absolute left-full'>{allChildren[position + 1]}</div>
                 </motion.div>
             </AnimatePresence>
         </section>
     );
 }
 
-const carouselStyles = ['carousel', 'relative', 'overflow-hidden', styles.cardShadow];
+const carouselStyles = ['carousel relative overflow-hidden', styles.cardShadow];
 const variants = {
     enter: (direction: number) => ({
-        x: direction > 0 ? 1000 : -1000
+        x: direction > 0 ? '100%' : '-100%'
     }),
     center: {
-        zIndex: 1,
-        x: 0
+        x: 0,
+        opacity: 1
     },
     exit: (direction: number) => ({
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000
+        x: direction < 0 ? '100%' : '-100%'
     })
 };
 const swipeConfidenceThreshold = 1000;

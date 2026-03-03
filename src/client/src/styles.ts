@@ -1,7 +1,7 @@
 export const styles = {
     darkBg: 'bg-neutral-900',
     cardBg: 'bg-neutral-100',
-    cardShadow: 'shadow-2xl',
+    cardShadow: '',
     cardRadius: 'rounded-sm',
     altBg: 'bg-indigo-600',
     altTextColor: 'text-indigo-600',

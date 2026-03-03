@@ -14,7 +14,7 @@ function RootComponent() {
         <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto justify-center bg-neutral-200 min-h-fit'>
             <header
                 className={css(
-                    'flex items-center justify-between lg:pl-10 lg:pr-10 pl-5 pr-5 pt-3 pb-3 text-white shadow-md border-b border-gray-500',
+                    'flex items-center justify-between lg:pl-10 lg:pr-10 sm:px-5 px-3 py-3 text-white border-b border-gray-500',
                     styles.darkBg
                 )}
             >

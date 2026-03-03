@@ -166,14 +166,14 @@ export function NewsPage() {
     }
 
     return (
-        <section className='flex flex-col items-center basis-full gap-5 lg:p-10 md:p-5 p-2'>
+        <section className='flex flex-col items-center basis-full gap-5 lg:p-10 md:p-5 py-3'>
             <div className='flex flex-col items-stretch gap-5 sm:gap-2 w-[50em] max-w-[98vw] '>
                 {renderNavigation()}
                 <section className='flex flex-col relative gap-2'>
                     {renderDots()}
                     {isArticlesLoading && (
                         <Carousel className='placeholder w-full' position={0} direction={0}>
-                            <ArticleCard placeholder />
+                            <ArticleCard className='max-h-[80vh]' placeholder />
                         </Carousel>
                     )}
                     {!isArticlesLoading && (
@@ -190,7 +190,7 @@ export function NewsPage() {
                             }}
                         >
                             {data?.results?.map((props) => (
-                                <ArticleCard className='max-h-[70dvh]' {...props} key={props?.article?.url} />
+                                <ArticleCard className='max-h-[75dvh]' {...props} key={props?.article?.url} />
                             ))}
                         </Carousel>
                     )}
