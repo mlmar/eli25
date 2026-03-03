@@ -12,9 +12,6 @@ type CarouselProps = PropsWithChildren & {
 };
 
 export function Carousel({ className, children, position, direction, onSwipe }: CarouselProps) {
-    // Inside your Carousel component
-    const allChildren = Children.toArray(children);
-
     return (
         <section className={css(...carouselStyles, className)}>
             <AnimatePresence initial={false} mode='popLayout' custom={direction}>
@@ -26,33 +23,25 @@ export function Carousel({ className, children, position, direction, onSwipe }: 
                     animate='center'
                     exit='exit'
                     drag='x'
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={1}
+                    dragMomentum={false}
                     onDragEnd={(_e, { offset, velocity }) => {
-                        if (onSwipe) {
-                            const swipe = Math.abs(offset.x) * velocity.x;
-                            if (swipe < -swipeConfidenceThreshold) {
-                                onSwipe(1); // left
-                            } else if (swipe > swipeConfidenceThreshold) {
-                                onSwipe(-1); // right
-                            }
+                        const swipe = offset.x;
+                        if (Math.abs(swipe) > swipeThreshold || Math.abs(velocity.x) > velocityThreshold) {
+                            onSwipe?.(swipe > 0 ? -1 : 1);
                         }
                     }}
                     transition={{
-                        x: { type: 'spring', stiffness: 250, damping: 35, mass: 1 }
+                        x: { type: 'spring', stiffness: 250, damping: 35 }
                     }}
-                    className='relative flex h-full w-full shrink-0 items-center justify-center'
                 >
-                    <div className='w-full h-full absolute right-full'>{allChildren[position - 1]}</div>
-                    <div className='w-full h-full'>{allChildren[position]}</div>
-                    <div className='w-full h-full absolute left-full'>{allChildren[position + 1]}</div>
+                    {Children.toArray(children).at(position)}
                 </motion.div>
             </AnimatePresence>
         </section>
     );
 }
 
-const carouselStyles = ['carousel relative overflow-hidden', styles.cardShadow];
+const carouselStyles = ['carousel relative overflow-hidden will-change-transform', styles.cardShadow];
 const variants = {
     enter: (direction: number) => ({
         x: direction > 0 ? '100%' : '-100%'
@@ -65,7 +54,8 @@ const variants = {
         x: direction < 0 ? '100%' : '-100%'
     })
 };
-const swipeConfidenceThreshold = 1000;
+const swipeThreshold = 50;
+const velocityThreshold = 500;
 
 Carousel.Card = function CarouselCard({ children }: PropsWithChildren<{ className?: string }>) {
     const ref = useRef<HTMLElement | null>(null);
