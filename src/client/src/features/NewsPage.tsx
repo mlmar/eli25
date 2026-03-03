@@ -145,7 +145,7 @@ export function NewsPage() {
 
     function renderDots() {
         return (
-            <section className='flex gap-2 items-center justify-center'>
+            <section className='flex gap-2 items-center justify-center h-[2em]'>
                 {data?.results?.map((_item, i) => (
                     <ButtonLink
                         className={css(styles.dot, {
@@ -167,13 +167,12 @@ export function NewsPage() {
 
     return (
         <section className='flex flex-col items-center basis-full gap-5 lg:p-10 md:p-5 py-3'>
-            <div className='flex flex-col items-stretch gap-5 sm:gap-2 w-[50em] max-w-[98vw] '>
+            <div className='flex flex-col items-stretch sm:gap-5 gap-3 w-[50em] max-w-[98vw] '>
                 {renderNavigation()}
                 <section className='flex flex-col relative gap-2'>
-                    {renderDots()}
                     {isArticlesLoading && (
                         <Carousel className='placeholder w-full' position={0} direction={0}>
-                            <ArticleCard className='max-h-[80vh]' placeholder />
+                            <ArticleCard className='max-h-[75vh]' placeholder />
                         </Carousel>
                     )}
                     {!isArticlesLoading && (
@@ -190,10 +189,11 @@ export function NewsPage() {
                             }}
                         >
                             {data?.results?.map((props) => (
-                                <ArticleCard className='max-h-[75vh]' {...props} key={props?.article?.url} />
+                                <ArticleCard className='max-h-[65vh]' {...props} key={props?.article?.url} />
                             ))}
                         </Carousel>
                     )}
+                    {renderDots()}
                     {renderArrowButtons()}
                 </section>
                 <Info />

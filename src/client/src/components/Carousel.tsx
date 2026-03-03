@@ -24,6 +24,8 @@ export function Carousel({ className, children, position, direction, onSwipe }: 
                     exit='exit'
                     drag='x'
                     dragMomentum={false}
+                    dragElastic={0.1}
+                    dragConstraints={{ left: 0, right: 0 }}
                     onDragEnd={(_e, { offset, velocity }) => {
                         const swipe = offset.x;
                         if (Math.abs(swipe) > swipeThreshold || Math.abs(velocity.x) > velocityThreshold) {

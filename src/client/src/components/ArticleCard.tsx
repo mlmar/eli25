@@ -116,10 +116,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
             {...rest}
         >
             {placeholder && (
-                <div
-                    className='flex basis-50 cursor-default basis-full h-full w-full bg-indigo-500 min-h-60'
-                    aria-hidden='true'
-                ></div>
+                <div className='flex basis-50 cursor-default basis-full w-full bg-indigo-500' aria-hidden='true'></div>
             )}
             {!placeholder &&
                 (hasUrl ? (
