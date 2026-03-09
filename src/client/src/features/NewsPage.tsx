@@ -97,8 +97,8 @@ export function NewsPage() {
                     >
                         <ChevronsLeft aria-label='Previous Date' />
                     </ButtonLink>
-                    {data?.results?.length && dateString}
-                    {!data?.results?.length && !isArticlesLoading && 'No articles Found'}
+                    {Boolean(data?.results?.length) && dateString}
+                    {Boolean(!data?.results?.length) && !isArticlesLoading && 'No articles Found'}
                     {isArticlesLoading && 'Loading Articles...'}
                     <ButtonLink
                         path={data?.next_date}
@@ -172,7 +172,7 @@ export function NewsPage() {
                 <section className='flex flex-col relative gap-2'>
                     {isArticlesLoading && (
                         <Carousel className='placeholder w-full' position={0} direction={0}>
-                            <ArticleCard className='max-h-[75vh]' placeholder />
+                            <ArticleCard className='max-h-[70vh]' placeholder />
                         </Carousel>
                     )}
                     {!isArticlesLoading && (
@@ -189,7 +189,7 @@ export function NewsPage() {
                             }}
                         >
                             {data?.results?.map((props) => (
-                                <ArticleCard className='max-h-[65vh]' {...props} key={props?.article?.url} />
+                                <ArticleCard className='max-h-[70vh]' {...props} key={props?.article?.url} />
                             ))}
                         </Carousel>
                     )}
