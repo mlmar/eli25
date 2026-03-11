@@ -14,17 +14,19 @@ function RootComponent() {
         <main className='bg-neutral-5500 h-full w-full flex flex-col flex-auto bg-neutral-200 min-h-fit'>
             <header
                 className={css(
-                    'flex items-center justify-between lg:pl-10 lg:pr-10 sm:px-5 p-2 text-white border-b border-gray-500',
+                    'flex items-center justify-center lg:pl-10 lg:pr-10 sm:px-5 p-2 text-white border-b border-gray-500',
                     styles.darkBg
                 )}
             >
-                <Link to='..'>
-                    <h1 className='font-bold sm:text-xl text-base'> eli25 </h1>
-                </Link>
-                <span className='flex gap-5'>
-                    <IconLink className='sm:h-7 sm:w-7 h-4 invert ' src={githubImage} url={githubUrl} />
-                    <IconLink className='sm:h-7 sm:w-7 h-4' src={portfolioImage} url={portfolioUrl} />
-                </span>
+                <div className={css('flex justify-between', styles.pageWidth)}>
+                    <Link to='..'>
+                        <h1 className='font-bold sm:text-xl text-base'> eli25 </h1>
+                    </Link>
+                    <span className='flex gap-5'>
+                        <IconLink className='sm:h-7 sm:w-7 h-4 invert ' src={githubImage} url={githubUrl} />
+                        <IconLink className='sm:h-7 sm:w-7 h-4' src={portfolioImage} url={portfolioUrl} />
+                    </span>
+                </div>
             </header>
             <Outlet />
         </main>

@@ -10,5 +10,6 @@ export const styles = {
     arrowButton: 'cursor-pointer',
     dot: 'h-2 w-2 border border-neutral-400 rounded-full cursor-pointer transition-[width] transition-[height]',
     dotDark: 'bg-neutral-700 border-neutral-700',
-    dotSelected: 'h-3 w-3'
+    dotSelected: 'h-3 w-3',
+    pageWidth: 'w-[50em] max-w-[98vw]'
 }

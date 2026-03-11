@@ -167,7 +167,7 @@ export function NewsPage() {
 
     return (
         <section className='flex flex-col items-center basis-full gap-5 lg:p-10 md:p-5 py-3'>
-            <div className='flex flex-col items-stretch sm:gap-5 gap-3 w-[50em] max-w-[98vw] '>
+            <div className={css('flex flex-col items-stretch sm:gap-5 gap-3', styles.pageWidth)}>
                 {renderNavigation()}
                 <section className='flex flex-col relative gap-2'>
                     {isArticlesLoading && (
