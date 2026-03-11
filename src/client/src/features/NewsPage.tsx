@@ -98,7 +98,7 @@ export function NewsPage() {
                         <ChevronsLeft aria-label='Previous Date' />
                     </ButtonLink>
                     {Boolean(data?.results?.length) && dateString}
-                    {Boolean(!data?.results?.length) && !isArticlesLoading && 'No articles Found'}
+                    {Boolean(!data?.results?.length) && !isArticlesLoading && 'No Articles Found'}
                     {isArticlesLoading && 'Loading Articles...'}
                     <ButtonLink
                         path={data?.next_date}
