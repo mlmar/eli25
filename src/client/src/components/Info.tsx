@@ -15,10 +15,9 @@ export function Info({ className }: InfoProps) {
     return (
         <section
             className={css(
-                'flex gap-4 p-5 border border-violet-500 text-white text-sm',
+                'flex gap-4 p-5 border border-violet-500 text-white text-sm bg-alt',
                 styles.cardShadow,
                 styles.cardRadius,
-                styles.altBg,
                 className
             )}
         >

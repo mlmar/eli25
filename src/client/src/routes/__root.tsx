@@ -15,7 +15,7 @@ function RootComponent() {
             <header
                 className={css(
                     'flex items-center justify-center lg:pl-10 lg:pr-10 sm:px-5 p-2 text-white border-b border-gray-500',
-                    styles.darkBg
+                    'bg-dark-bg'
                 )}
             >
                 <div className={css('flex justify-between', styles.pageWidth)}>

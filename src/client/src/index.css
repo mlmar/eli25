@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@theme inline {
+    --color-dark-bg: var(--color-neutral-900);
+    --color-card-bg: var(--color-neutral-100);
+    --color-alt: var(--color-indigo-600);
+}
+
 :root {
     font-family:
         system-ui,

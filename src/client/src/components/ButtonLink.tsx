@@ -1,4 +1,3 @@
-import { styles } from '@/styles';
 import { css } from '@/util/css';
 import { Link } from '@tanstack/react-router';
 import type { PropsWithChildren } from 'react';
@@ -16,7 +15,7 @@ export function ButtonLink({ className, path, children, loading, search, disable
         <Link className={css('flex', className)} to={'/' + path} search={search} disabled={!path}>
             <button
                 className={css(
-                    `cursor-pointer px-2 hover:${styles.altTextColor} text-select-none disabled:cursor-default disabled:opacity-20`,
+                    'cursor-pointer px-2 hover:text-alt text-select-none disabled:cursor-default disabled:opacity-20',
                     {
                         'opacity-20': loading
                     }

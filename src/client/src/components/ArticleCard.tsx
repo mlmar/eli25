@@ -46,7 +46,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                         'font-semibold',
                         'text-sm',
                         'mr-2',
-                        styles.altTextColor
+                        'text-alt'
                     )}
                     href={article?.url ?? undefined}
                     aria-label={`Source: ${article?.source?.name}`}
@@ -87,8 +87,8 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                                         'absolute top-0 right-[100%]',
                                         'text-nowrap text-sm font-semibold',
                                         'px-2',
-                                        styles.cardBg,
-                                        styles.altTextColor
+                                        'bg-card-bg',
+                                        'text-alt'
                                     )}
                                 >
                                     {toast}
@@ -106,7 +106,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
             aria-labelledby={headingId}
             className={css(
                 'flex flex-col overflow-hidden h-[40em] w-full',
-                styles.cardBg,
+                'bg-card-bg',
                 styles.cardRadius,
                 className,
                 {
