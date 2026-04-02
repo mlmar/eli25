@@ -89,6 +89,7 @@ export function NewsPage() {
         return (
             <nav className='flex flex-col gap-5'>
                 <h2 className={styles.navigation}>
+                    {renderLeftItemArrow()}
                     <ButtonLink
                         path={data?.prev_date}
                         search={{ item: 0 }}
@@ -108,37 +109,43 @@ export function NewsPage() {
                     >
                         <ChevronsRight aria-label='Next Date' />
                     </ButtonLink>
+                    {renderRightItemArrow()}
                 </h2>
             </nav>
         );
     }
 
+    function renderLeftItemArrow() {
+        return (
+            <ButtonLink
+                className={css('lg:absolute lg:right-[100%] lg:top-[50%]', styles.arrowButton)}
+                {...getLeftPath()}
+                loading={isArticlesLoading}
+                disabled={isStart && !data?.prev_date}
+            >
+                <ChevronLeft aria-label='Previous Article' />
+            </ButtonLink>
+        );
+    }
+
+    function renderRightItemArrow() {
+        return (
+            <ButtonLink
+                className={css('lg:absolute lg:left-[100%] lg:top-[50%]', styles.arrowButton)}
+                {...getRightPath()}
+                loading={isArticlesLoading}
+                disabled={isEnd && !data?.next_date}
+            >
+                <ChevronRight aria-label='Next Article' />
+            </ButtonLink>
+        );
+    }
+
     function renderArrowButtons() {
         return (
-            <nav className='flex justify-between'>
-                <ButtonLink
-                    className={css(
-                        'md:absolute md:right-[100%] md:top-[50%] xs:left-[0%] xs:top-[100%]',
-                        styles.arrowButton
-                    )}
-                    {...getLeftPath()}
-                    loading={isArticlesLoading}
-                    disabled={isStart && !data?.prev_date}
-                >
-                    <ChevronLeft aria-label='Previous Article' />
-                </ButtonLink>
-
-                <ButtonLink
-                    className={css(
-                        'md:absolute md:left-[100%] md:top-[50%] xs:right-[0%] xs:top-[100%]',
-                        styles.arrowButton
-                    )}
-                    {...getRightPath()}
-                    loading={isArticlesLoading}
-                    disabled={isEnd && !data?.next_date}
-                >
-                    <ChevronRight aria-label='Next Article' />
-                </ButtonLink>
+            <nav className='flex justify-between lg:flex hidden'>
+                {renderLeftItemArrow()}
+                {renderRightItemArrow()}
             </nav>
         );
     }
@@ -159,7 +166,8 @@ export function NewsPage() {
                         }}
                         loading={isArticlesLoading}
                         aria-label={i.toString()}
-                    ></ButtonLink>
+                        key={i}
+                    />
                 ))}
             </section>
         );
