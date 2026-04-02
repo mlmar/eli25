@@ -28,7 +28,7 @@ export function ArticleCard({ className, article, summary, placeholder = false, 
                 className='flex object-cover bg-black text-white w-full h-full'
                 src={article?.urlToImage}
                 alt={article?.title ?? 'Article image'}
-                loading='lazy'
+                loading='eager'
             />
         );
     }
