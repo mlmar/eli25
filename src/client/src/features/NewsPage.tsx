@@ -89,7 +89,7 @@ export function NewsPage() {
         return (
             <nav className='flex flex-col gap-5'>
                 <h2 className={styles.navigation}>
-                    {renderLeftItemArrow()}
+                    {renderLeftItemArrow('lg:hidden')}
                     <ButtonLink
                         path={data?.prev_date}
                         search={{ item: 0 }}
@@ -109,16 +109,16 @@ export function NewsPage() {
                     >
                         <ChevronsRight aria-label='Next Date' />
                     </ButtonLink>
-                    {renderRightItemArrow()}
+                    {renderRightItemArrow('lg:hidden')}
                 </h2>
             </nav>
         );
     }
 
-    function renderLeftItemArrow() {
+    function renderLeftItemArrow(className?: string) {
         return (
             <ButtonLink
-                className={css('lg:absolute lg:right-[100%] lg:top-[50%]', styles.arrowButton)}
+                className={css('lg:absolute lg:right-[100%] lg:top-[50%]', styles.arrowButton, className)}
                 {...getLeftPath()}
                 loading={isArticlesLoading}
                 disabled={isStart && !data?.prev_date}
@@ -128,10 +128,10 @@ export function NewsPage() {
         );
     }
 
-    function renderRightItemArrow() {
+    function renderRightItemArrow(className?: string) {
         return (
             <ButtonLink
-                className={css('lg:absolute lg:left-[100%] lg:top-[50%]', styles.arrowButton)}
+                className={css('lg:absolute lg:left-[100%] lg:top-[50%]', styles.arrowButton, className)}
                 {...getRightPath()}
                 loading={isArticlesLoading}
                 disabled={isEnd && !data?.next_date}
